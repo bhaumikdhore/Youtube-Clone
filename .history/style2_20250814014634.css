@@ -1,0 +1,404 @@
+body{
+    font-family: 'Roboto', Arial, sans-serif;
+    background-color: #0f0f0f;
+    color: white;
+    margin:0px;
+    box-sizing: border-box;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+.main{
+    background-color: #0f0f0f;
+    display:flex;
+    height:100vh;
+    margin:0px;
+  
+}
+
+.header{
+    /* background-color: #0f0f0f; */
+     background-color: rgba(15,15,15,0.85); /* was #0f0f0f */
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    width:100%;
+    height:56px;
+    position:fixed;
+    top:0;
+    z-index: 1100; 
+    backdrop-filter: blur(4px); 
+}
+
+.header_menu{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    margin:15px 20px;
+   font-size: 23px;
+}
+.header_logo{
+     display:flex;
+    align-items: center;
+    justify-content: center;
+    margin-top:2px ;
+    font-size: 30px;
+}
+.searchbox{
+    margin-left:230px;
+    border: 1px solid hsl(0, 0%, 18%);
+    height:38px;
+    width:632px;
+    color:whitesmoke;
+    border-radius: 20px 0px 0px 20px;
+    
+}
+.searchbox .search {
+  width:100%; 
+  height:100%;
+  border:none;
+  padding-left: 15px;
+  background-color: transparent; 
+  color: white; 
+  font-weight: 400;
+  font-size: large;
+  box-sizing: border-box;
+  border-radius: 20px 0px 0px 20px;
+   
+}
+.searchbox input::placeholder {
+  color: #888; /* Only the text color */
+  opacity: 1;   /* Make sure it's not faded */
+  font-size: large;
+  font-weight: 300;
+}
+
+.search-logo{
+    border: 1px solid hsl(0, 2%, 18%);
+    border-left:none;
+    height:38px;
+    width:62px;
+    background-color: hsla(0, 0%, 100%, .08);
+    border-radius: 0px 20px 20px 0px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.mike{
+    margin-left: 16px;
+    background-color:hsla(0, 0%, 100%, .08);;
+     border: 1px solid hsl(0, 2%, 25%);
+    height:40px;
+    width:42px;
+    border-radius:50% 50%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.create{
+     margin-left: 160px;
+    background-color:hsl(0, 0%, 25%);;
+     border:none;
+    height:40px;
+    width:100px;
+    padding:0px 6px ;
+    border-radius: 20px 20px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    gap:5px;
+    opacity:0.75;
+}
+.create:hover{
+  opacity:1;
+}
+
+.bell{
+     display:flex;
+    align-items: center;
+    justify-content: center;
+    margin:15px 20px;
+   font-size: 23px;
+}
+.profile{
+    
+    margin:15px 20px;
+   font-size: 23px;
+   height:38px;
+   width:42px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+   border-radius: 50%;
+   border:1px solid hsl(0, 2%, 25%);
+
+}
+
+/* .sidebar{
+    background-color: #0f0f0f;
+   
+     height: calc(100vh - 56px);
+    width:216px;
+    margin-top: 56px ;
+    position:fixed;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding:12px;
+    scrollbar-width: thin;              
+    scrollbar-color: rgba(255,255,255,0.3) transparent; 
+    z-index: 10;
+}
+.sidebar::-webkit-scrollbar */
+.sidebar {
+    background-color: #0f0f0f;
+    height: calc(100vh - 56px);
+    width: 216px;
+    margin-top: 56px;
+    position: fixed;
+    padding: 12px;
+    overflow-y: hidden; /* Hides scrollbar until hover */
+    overflow-x: hidden;
+    z-index: 10;
+}
+
+.sidebar:hover {
+    overflow-y: auto; /* Shows scrollbar on hover */
+}
+
+/* Scrollbar style */
+.sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+/* chatgpt code above */
+.sidebar > div {
+  margin-bottom: 12px;
+  
+}
+
+.sdiv:hover{
+background-color:hsl(0, 2%, 25%); 
+border-radius:12px;
+}
+.basic,
+.you,
+.explore,
+.subscribes,
+.setting {
+  /* height and width removed so they grow to fit their inner items */
+  padding: 10px 16px;
+  margin-bottom: 16px;    /* a little more breathing room */
+  box-sizing: border-box;
+}
+.sidebar hr {
+  border: none;
+  border-top: 1px solid #555;
+  margin: 5px 0;    /* space above & below */
+  width: 90%;
+}
+
+
+.basic_option,
+.you_option,
+.sub_option,
+.expo_option,
+.set_option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 10px;
+  color: white;
+}
+
+.basic_option a,
+.you_option a,
+.sub_option a,
+.expo_option a,
+.set_option a {
+  color: white;
+}
+.you p,
+.explore p,
+.subscribes p {
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+
+.about {
+  padding: 12px 16px;
+  font-size: 12px;
+  color: gray;
+  line-height: 1.5;
+}
+
+.main-content{
+    background-color: #0f0f0f;
+    /* height: calc(100vh - 56px); */
+    margin-top: 112 px;
+    margin-left:216 px;
+    display:flex;
+    flex-direction: column; /* stack items vertically */
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width:thick;                /* thinner scrollbar */
+    scrollbar-color: rgba(255, 255, 255, 0.771) transparent; /* thumb track */
+   position: relative;
+  z-index: 1;
+}
+.suggestion-box{
+  position: fixed;
+  top: 56px;                         /* directly under the header */
+  left: 240px;                       /* align with main-content left (sidebar width) */
+  right: 40px;                       /* keep some right gutter so it doesn't touch the edge */
+  z-index: 2000;                     /* below header (1100) but above videos */
+  height: 56px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 16px;                   /* horizontal padding inside row */
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  /* background: transparent;           keep transparent so header/backdrop shows */
+  -webkit-backdrop-filter: blur(2px);/* slight blur if header is translucent */
+  scrollbar-width: thin;
+   background-color: rgba(15,15,15,0.85); 
+
+  /* my code */
+   /* position: fixed;   /* stick below header when scrolling */
+    /* top: 56px;          same as header height */
+    /* left: 240px; */
+    /* right: 40px; */
+    /* z-index: 1050;      just below header (header z-index 1100) */
+    /* height:56px; */
+    /* width:100%; */
+    /* margin-top: 56px;  */
+    /* overflow-x:auto; */
+    /* overflow-y: hidden; */
+    /* margin-left:30px ; */
+    /* white-space: nowrap; */
+    /* scrollbar-width: thin;                */
+    /* scrollbar-color: rgba(255,255,255,0.3) transparent; thumb track */
+    /* z-index: 10; */
+      /* background: transparent; ensure visible on dark bg */
+}
+
+
+.suggestion-box  p {
+  display: inline-block;
+  min-width: max-content; /* or set based on how wide you want */
+  border:1px solid hsl(0, 2%, 18%);
+  border-radius: 10px;
+  padding:6px 12px;
+  margin-left: 5px;
+  background-color: hsla(0, 0%, 100%, .08);
+}
+#name{
+  background-color:whitesmoke;
+  color:black;
+}
+
+.video{
+  display:flex;
+  flex-wrap: wrap;
+  gap:14px;
+  margin-left: 268px;
+  margin-top:124px;
+  /* border:1px solid hsl(0, 2%, 25%); */
+}
+.videos {
+  /* display:flex;
+  flex-wrap: wrap; */
+  width:400px;
+  height:300px;
+  margin-top:10px ;
+  /* border:1px solid hsl(0, 2%, 25%);
+  border-radius: 10px; */
+}
+.vd{
+  display: flex;
+  gap:15px;
+  margin:12px 0px;
+}
+iframe{
+   width:400px;
+  height:230px;
+  border-radius: 10px;
+}
+.video i{
+   /* margin:12px 0px; */
+   font-size: larger;
+   /* font-size: 23px; */
+   height:40px;
+   width:40px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+   border-radius: 50%;
+   border:1px solid hsl(0, 2%, 25%);
+}
+.vdis{
+  margin: none;
+  padding-bottom: 12px;
+  box-sizing: border-box;
+  display: flex;
+  flex:1;
+  flex-direction: column;
+  flex-wrap: nowrap;
+   max-width: 100%;
+}
+#views{
+  color:#aaa;
+}
+.shorts{
+  width:100%;
+}
+.shorts_container{
+  display: flex;
+  flex:1;
+  flex-wrap: wrap;
+  gap:10px;
+   justify-content: flex-start; 
+     justify-content: space-between;
+}
+.svideo {
+flex: 0 0 218px;         /* min width is 218px, grows if space available */
+  display: flex;
+  flex-direction: column; /* video + text stacked vertically */
+  align-items: center;
+}
+.shorts_header{
+  display: flex;
+  align-items: center;
+gap:18px;
+font-weight: 600;
+font-size: larger;
+letter-spacing: 2px;
+}
+
+.shorts_header > img{
+  height:24px;
+  width:24px;
+}
+.svideo > iframe{
+  margin:18px 0px;
+  height: 325px;
+  width:218px;
+
+}
+.vdis {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 14px;
+  margin-top: 5px;
+}

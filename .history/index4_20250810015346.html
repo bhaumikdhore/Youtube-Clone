@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Clone</title>
+    <link rel="stylesheet" href="style.css">
+    <style>* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f9f9f9;
+}
+
+/* HEADER */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background: white;
+    border-bottom: 1px solid #ddd;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+    color: red;
+}
+.logo span {
+    color: black;
+}
+
+.search-box {
+    display: flex;
+    width: 40%;
+}
+.search-box input {
+    flex: 1;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 2px 0 0 2px;
+}
+.search-box button {
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    background: #f0f0f0;
+    cursor: pointer;
+}
+
+.profile-icons span {
+    margin-left: 15px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* SIDEBAR */
+.sidebar {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 200px;
+    background: white;
+    height: 100%;
+    border-right: 1px solid #ddd;
+    padding-top: 10px;
+}
+.sidebar a {
+    display: block;
+    padding: 10px 15px;
+    color: black;
+    text-decoration: none;
+}
+.sidebar a:hover {
+    background: #f0f0f0;
+}
+
+/* MAIN CONTENT */
+.videos {
+    margin-left: 220px;
+    padding: 80px 20px 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+.video-card {
+    background: white;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.video-card img {
+    width: 100%;
+    border-radius: 8px;
+}
+.video-card h4 {
+    margin: 8px 0 5px;
+}
+.video-card p {
+    font-size: 14px;
+    color: gray;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .sidebar {
+        display: none;
+    }
+    .videos {
+        margin-left: 0;
+    }
+}</style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="logo">YouTube<span>Clone</span></div>
+        <div class="search-box">
+            <input type="text" placeholder="Search">
+            <button>🔍</button>
+        </div>
+        <div class="profile-icons">
+            <span>📹</span>
+            <span>🔔</span>
+            <span>😊</span>
+        </div>
+    </header>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <a href="#">🏠 Home</a>
+        <a href="#">🔥 Trending</a>
+        <a href="#">📜 Subscriptions</a>
+        <a href="#">📚 Library</a>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="videos">
+        <div class="video-card">
+            <img src="https://via.placeholder.com/300x170" alt="Video">
+            <h4>Sample Video Title</h4>
+            <p>Channel Name • 1M views • 1 day ago</p>
+        </div>
+        <div class="video-card">
+            <img src="https://via.placeholder.com/300x170" alt="Video">
+            <h4>Another Video</h4>
+            <p>Channel Name • 500K views • 3 days ago</p>
+        </div>
+        <!-- Add more video cards -->
+    </main>
+</body>
+</html>
+

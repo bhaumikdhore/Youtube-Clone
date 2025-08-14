@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>YT Clone — HTML + CSS</title>
+
+<!-- fonts & icons -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+
+<style>
+  :root{
+    --bg: #0f0f0f;
+    --panel: #0b0b0b;
+    --muted: rgba(255,255,255,0.08);
+    --accent: #ff0040;
+    --header-h: 56px;
+    --sidebar-w: 216px;
+    --gap: 16px;
+    --chip-radius: 18px;
+  }
+
+  /* Reset & base */
+  *{box-sizing: border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family: "Roboto", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background: var(--bg);
+    color: #eee;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+  }
+  a{color:inherit;text-decoration:none}
+
+  /* Header */
+  .header{
+    position: fixed;
+    top:0; left:0; right:0;
+    height: var(--header-h);
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:0 12px;
+    background: rgba(10,10,10,0.86);
+    z-index: 1000;
+    backdrop-filter: blur(4px);
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+  }
+  .header .left, .header .center, .header .right{display:flex;align-items:center;gap:12px}
+  .header .left{width:var(--sidebar-w)}
+  .logo{display:flex;align-items:center;gap:8px;font-weight:700}
+  .logo img{height:28px;display:block}
+  /* search */
+  .search {
+    width: 640px;
+    max-width: calc(100% - 420px);
+    height:38px;
+    display:flex;
+    background: #111;
+    border: 1px solid rgba(255,255,255,0.04);
+    border-radius: 20px;
+    overflow: hidden;
+    align-items:center;
+  }
+  .search input{
+    flex:1;
+    border:0;background:transparent;color:#fff;padding:0 14px;font-size:15px;outline:none;
+  }
+  .search .btn{
+    width:52px;height:100%;display:flex;align-items:center;justify-content:center;border-left:1px solid rgba(255,255,255,0.04)
+  }
+
+  /* Sidebar */
+  .sidebar{
+    position: fixed;
+    top: var(--header-h);
+    left:0;
+    width: var(--sidebar-w);
+    bottom:0;
+    padding:12px;
+    overflow:auto;
+    background: transparent;
+    border-right:1px solid rgba(255,255,255,0.02);
+  }
+  .nav-section{margin-bottom:12px}
+  .nav-item{
+    display:flex;align-items:center;gap:12px;padding:10px;border-radius:8px;color:#ddd;
+  }
+  .nav-item:hover{background: rgba(255,255,255,0.02)}
+
+  /* Page layout - main column */
+  .page {
+    margin-left: var(--sidebar-w);
+    margin-top: var(--header-h);
+    padding: 0;
+    min-height: calc(100vh - var(--header-h));
+  }
+
+  /* Suggestion chips row — sticky under header */
+  .suggestion-wrap{
+    position: sticky;
+    top: var(--header-h);
+    z-index: 900;
+    background: linear-gradient(180deg, rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.04) 100%);
+    padding: 10px 20px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    overflow-x:auto;
+    scrollbar-width: thin;
+  }
+  .chip{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:8px 14px;
+    border-radius: var(--chip-radius);
+    background: var(--muted);
+    border: 1px solid rgba(255,255,255,0.06);
+    white-space: nowrap;
+    font-size:14px;
+    color:#fff;
+  }
+  .chip.primary{background:#fff;color:#111;font-weight:600}
+
+  /* Video grid */
+  .content{
+    padding: 18px 20px 80px 20px; /* bottom for breathing */
+  }
+  .grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px,1fr));
+    gap: 18px;
+    align-items:start;
+  }
+  .card{
+    background: #0b0b0b;
+    border-radius: 12px;
+    padding: 10px;
+    box-shadow: 0 1px 0 rgba(255,255,255,0.02) inset;
+  }
+  .thumb{
+    width:100%;
+    aspect-ratio: 16/9;
+    background: #111;
+    border-radius: 10px;
+    display:block;
+    overflow:hidden;
+    position:relative;
+  }
+  .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+  .meta{display:flex;gap:10px;padding-top:10px;align-items:flex-start}
+  .avatar{width:36px;height:36px;border-radius:50%;background:#222;display:inline-block;flex:0 0 36px}
+  .meta .title{font-weight:500;color:#eee}
+  .meta .sub{font-size:13px;color:#aaa;margin-top:6px}
+
+  /* tiny responsive tweaks */
+  @media (max-width:900px){
+    .search{max-width: 420px}
+    .grid{grid-template-columns: repeat(auto-fill, minmax(220px,1fr))}
+  }
+  @media (max-width:700px){
+    .sidebar{display:none}
+    .page{margin-left:0}
+    .search{max-width: 240px}
+  }
+</style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="left">
+      <button class="menu" aria-label="menu"><i class="fa-solid fa-bars"></i></button>
+    </div>
+
+    <div class="center" style="flex:1;justify-content:center">
+      <div class="logo"><img src="https://via.placeholder.com/110x36?text=YouTube" alt="logo"></div>
+
+      <div class="search" role="search" style="margin-left:16px">
+        <input placeholder="Search" aria-label="search">
+        <div class="btn"><i class="fa-solid fa-magnifying-glass"></i></div>
+      </div>
+    </div>
+
+    <div class="right" style="margin-left:auto;gap:10px">
+      <div class="mike"><i class="fa-solid fa-microphone"></i></div>
+      <div class="create"><i class="fa-solid fa-plus"></i> <span style="margin-left:6px">Create</span></div>
+      <div class="bell"><i class="fa-regular fa-bell"></i></div>
+      <div class="profile"><i class="fa-solid fa-user"></i></div>
+    </div>
+  </header>
+
+  <aside class="sidebar" aria-label="sidebar">
+    <div class="nav-section">
+      <div class="nav-item"><i class="fa-solid fa-house"></i><span>Home</span></div>
+      <div class="nav-item"><i class="fa-solid fa-bolt"></i><span>Shorts</span></div>
+      <div class="nav-item"><i class="fa-brands fa-youtube"></i><span>Subscriptions</span></div>
+    </div>
+
+    <hr style="border:none;border-top:1px solid rgba(255,255,255,0.03);margin:8px 0">
+
+    <div class="nav-section">
+      <div class="nav-item"><i class="fa-solid fa-clock-rotate-left"></i><span>History</span></div>
+      <div class="nav-item"><i class="fa-solid fa-thumbs-up"></i><span>Liked</span></div>
+    </div>
+  </aside>
+
+  <main class="page">
+    <!-- suggestion chips (sticky under header) -->
+    <div class="suggestion-wrap">
+      <div style="width:12px"></div>
+      <div class="chip primary">All</div>
+      <div class="chip">Bhaumik Dhore</div>
+      <div class="chip">Indian Music</div>
+      <div class="chip">philosophy</div>
+      <div class="chip">Live</div>
+      <div class="chip">Podcasts</div>
+      <div class="chip">Mixes</div>
+      <div class="chip">Trading</div>
+      <div class="chip">Coding</div>
+      <div class="chip">C++</div>
+      <div class="chip">MHJ</div>
+      <div class="chip">Suggestion box</div>
+      <div class="chip">Games</div>
+      <div style="width:12px"></div>
+    </div>
+
+    <!-- content -->
+    <section class="content">
+      <div class="grid">
+        <!-- repeat cards -->
+        <article class="card">
+          <a class="thumb" href="#"><img src="https://picsum.photos/640/360?random=1" alt=""></a>
+          <div class="meta">
+            <div class="avatar"></div>
+            <div>
+              <div class="title">Demo video title – 1</div>
+              <div class="sub">Channel • 120K views • 2 days ago</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="#"><img src="https://picsum.photos/640/360?random=2" alt=""></a>
+          <div class="meta">
+            <div class="avatar"></div>
+            <div>
+              <div class="title">Demo video title – 2</div>
+              <div class="sub">Channel • 34K views • 1 week ago</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="#"><img src="https://picsum.photos/640/360?random=3" alt=""></a>
+          <div class="meta">
+            <div class="avatar"></div>
+            <div>
+              <div class="title">Demo video title – 3</div>
+              <div class="sub">Channel • 8.2K views • 3 days ago</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="#"><img src="https://picsum.photos/640/360?random=4" alt=""></a>
+          <div class="meta">
+            <div class="avatar"></div>
+            <div>
+              <div class="title">Demo video title – 4</div>
+              <div class="sub">Channel • 2.1M views • 1 year ago</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="#"><img src="https://picsum.photos/640/360?random=5" alt=""></a>
+          <div class="meta">
+            <div class="avatar"></div>
+            <div>
+              <div class="title">Demo video title – 5</div>
+              <div class="sub">Channel • 7.3K views • 6 days ago</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="#"><img src="https://picsum.photos/640/360?random=6" alt=""></a>
+          <div class="meta">
+            <div class="avatar"></div>
+            <div>
+              <div class="title">Demo video title – 6</div>
+              <div class="sub">Channel • 900K views • 2 years ago</div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+  </main>
+
+</body>
+</html>

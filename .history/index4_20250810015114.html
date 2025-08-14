@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YouTube Clone</title>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+    }
+
+    /* GRID LAYOUT */
+    .container {
+        display: grid;
+        grid-template-columns: 240px 1fr;
+        grid-template-rows: 60px 1fr;
+        grid-template-areas:
+            "header header"
+            "sidebar main";
+        height: 100vh;
+    }
+
+    /* HEADER */
+    header {
+        grid-area: header;
+        background: white;
+        display: flex;
+        align-items: center;
+        padding: 0 20px;
+        box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+
+    /* SIDEBAR */
+    aside {
+        grid-area: sidebar;
+        background: #fff;
+        padding: 20px;
+        border-right: 1px solid #ddd;
+    }
+
+    aside a {
+        display: block;
+        margin: 10px 0;
+        text-decoration: none;
+        color: #333;
+        font-weight: 500;
+    }
+
+    /* MAIN CONTENT */
+    main {
+        grid-area: main;
+        padding: 20px;
+        overflow-y: auto;
+    }
+
+    /* VIDEO GRID */
+    .video-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .video-card {
+        background: white;
+        width: 300px;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+    }
+
+    .video-card img {
+        width: 100%;
+        display: block;
+    }
+
+    .video-info {
+        padding: 10px;
+    }
+
+    .video-title {
+        font-size: 16px;
+        font-weight: bold;
+        margin: 0 0 5px;
+    }
+
+    .video-channel {
+        font-size: 14px;
+        color: #555;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>YouTube Clone</h1>
+    </header>
+
+    <aside>
+        <a href="#">Home</a>
+        <a href="#">Trending</a>
+        <a href="#">Subscriptions</a>
+        <a href="#">Library</a>
+    </aside>
+
+    <main>
+        <div class="video-grid">
+            <div class="video-card">
+                <img src="https://via.placeholder.com/300x170" alt="Video">
+                <div class="video-info">
+                    <p class="video-title">Sample Video 1</p>
+                    <p class="video-channel">Channel Name</p>
+                </div>
+            </div>
+            <div class="video-card">
+                <img src="https://via.placeholder.com/300x170" alt="Video">
+                <div class="video-info">
+                    <p class="video-title">Sample Video 2</p>
+                    <p class="video-channel">Channel Name</p>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+</body>
+</html>
